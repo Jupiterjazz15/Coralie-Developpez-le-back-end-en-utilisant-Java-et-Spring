@@ -15,8 +15,14 @@ export class MeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.authService.me().subscribe(
-      (user: User) => this.user = user
-    )
+      (user: User) => {
+        this.user = user; // Stocker l'utilisateur dans la propriété
+        console.log('User data:', user); // Log de la réponse
+      },
+      (error) => {
+        console.error('Error fetching user data:', error); // Gestion des erreurs
+      }
+    );
   }
 
   public back() {
